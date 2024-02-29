@@ -33,7 +33,7 @@ const MINIMUN_DURATION_PACKETS = 50;
 
 const MAX_LOG_MESSAGES_COUNT = 10;
 
-const VERSION_IDENTIFIER = "(v1.0.4)";
+const VERSION_IDENTIFIER = "(v1.0.5)";
 
 var message_id = 0; // id for the next message to be sent
 var sent_count = 0; // number of messages sent
@@ -850,19 +850,19 @@ function beforeAnswer(peerConnection) {
 createExample('VSee Network Stability Test ' + VERSION_IDENTIFIER, description, { beforeAnswer });
 
 {
-  const consoleMessageElement = document.getElementById("consoleMessage");
+  // const consoleMessageElement = document.getElementById("consoleMessage");
 
-  const MOSChartTag = document.createElement('canvas');
-  MOSChartTag.setAttribute("id", "MOSChart");
-  document.body.insertBefore(MOSChartTag, consoleMessageElement);
+  // const MOSChartTag = document.createElement('canvas');
+  // MOSChartTag.setAttribute("id", "MOSChart");
+  // document.body.insertBefore(MOSChartTag, consoleMessageElement);
 
-  const lossChartTag = document.createElement('canvas');
-  lossChartTag.setAttribute("id", "lossChart");
-  document.body.insertBefore(lossChartTag, consoleMessageElement);
+  // const lossChartTag = document.createElement('canvas');
+  // lossChartTag.setAttribute("id", "lossChart");
+  // document.body.insertBefore(lossChartTag, consoleMessageElement);
 
-  const delayChartTag = document.createElement('canvas');
-  delayChartTag.setAttribute("id", "delayChart");
-  document.body.insertBefore(delayChartTag, consoleMessageElement);
+  // const delayChartTag = document.createElement('canvas');
+  // delayChartTag.setAttribute("id", "delayChart");
+  // document.body.insertBefore(delayChartTag, consoleMessageElement);
 }
 },{"../../lib/browser/example":2,"chart.js":6}],2:[function(require,module,exports){
 'use strict';
@@ -871,18 +871,25 @@ const createStartStopButton = require('./startstopbutton');
 const ConnectionClient = require('../client');
 
 function createExample(name, description, options) {
-  const nameTag = document.createElement('h2');
-  nameTag.innerText = name;
-  document.body.appendChild(nameTag);
+  // const nameTag = document.createElement('h2');
+  // nameTag.innerText = name;
+	// document.body.appendChild(nameTag);
+	
+	document.querySelector('h2').innerText = name;
+	document.getElementById('descriptionMessage').innerHTML = description;
+	document.getElementById('clickStartMessage').innerHTML = 'Please click on the <b>Start button</b> to begin running this test.';
 
-  const descriptionTag = document.createElement('p');
-  descriptionTag.setAttribute("id", "descriptionMessage");
-  descriptionTag.innerHTML = description;
-  document.body.appendChild(descriptionTag);
+// Now 'descriptionMessageElement' contains the reference to the element with the ID 'descriptionMessage'
 
-  const clickStartTag = document.createElement('p');
-  clickStartTag.innerHTML = 'Please click on the <b>Start button</b> to begin running this test.';
-  document.body.appendChild(clickStartTag);
+
+  // const descriptionTag = document.createElement('p');
+  // descriptionTag.setAttribute("id", "descriptionMessage");
+  // descriptionTag.innerHTML = description;
+  // document.body.appendChild(descriptionTag);
+
+  // const clickStartTag = document.createElement('p');
+  // clickStartTag.innerHTML = 'Please click on the <b>Start button</b> to begin running this test.';
+  // document.body.appendChild(clickStartTag);
 
   const connectionClient = new ConnectionClient();
 
@@ -903,21 +910,21 @@ function createExample(name, description, options) {
     peerConnection.close();
   });
 
-  const summaryTag = document.createElement('p');
-  summaryTag.setAttribute("id", "summaryMessage");
-  document.body.appendChild(summaryTag);
+  // const summaryTag = document.createElement('p');
+  // summaryTag.setAttribute("id", "summaryMessage");
+  // document.body.appendChild(summaryTag);
 
-  const divTag = document.createElement('p');
-  divTag.setAttribute("id", "divTag");
-  document.body.appendChild(divTag);
+  // const divTag = document.createElement('p');
+  // divTag.setAttribute("id", "divTag");
+  // document.body.appendChild(divTag);
 
-  const overallTag = document.createElement('p');
-  overallTag.setAttribute("id", "overallMessage");
-  document.body.appendChild(overallTag);
+  // const overallTag = document.createElement('p');
+  // overallTag.setAttribute("id", "overallMessage");
+  // document.body.appendChild(overallTag);
 
-  const messageTag = document.createElement('p');
-  messageTag.setAttribute("id", "consoleMessage");
-  document.body.appendChild(messageTag);
+  // const messageTag = document.createElement('p');
+  // messageTag.setAttribute("id", "consoleMessage");
+  // document.body.appendChild(messageTag);
 
 }
 
@@ -931,21 +938,28 @@ require('canvas-toBlob');
 var FileSaver = require('file-saver');
 
 function createStartStopButton(onStart, onStop) {
-  const startButton = document.createElement('button');
-  startButton.innerText = 'Start';
-  document.body.appendChild(startButton);
+  // const startButton = document.createElement('button');
+  // startButton.innerText = 'Start';
+  // document.body.appendChild(startButton);
 
-  const stopButton = document.createElement('button');
-  stopButton.setAttribute('id', "stopButton");
-  stopButton.innerText = 'Stop';
-  stopButton.disabled = true;
-  document.body.appendChild(stopButton);
+  // const stopButton = document.createElement('button');
+  // stopButton.setAttribute('id', "stopButton");
+  // stopButton.innerText = 'Stop';
+  // stopButton.disabled = true;
+  // document.body.appendChild(stopButton);
 
-  const saveButton = document.createElement('button');
-  saveButton.setAttribute('id', "saveButton");
-  saveButton.innerText = 'Save as image';
-  saveButton.disabled = true;
-  document.body.appendChild(saveButton);
+  // const saveButton = document.createElement('button');
+  // saveButton.setAttribute('id', "saveButton");
+  // saveButton.innerText = 'Save as image';
+  // saveButton.disabled = true;
+	// document.body.appendChild(saveButton);
+	
+	startButton = document.getElementById('startButton')
+	stopButton = document.getElementById('stopButton')
+	saveButton = document.getElementById('saveButton')
+  	
+	stopButton.disabled = true;
+	saveButton.disabled = true;
 
   startButton.addEventListener('click', async () => {
     startButton.disabled = true;
